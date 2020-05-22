@@ -139,7 +139,7 @@ export default {
 						let params = {password:this.updatePwdDataForm.password, newPassword:this.updatePwdDataForm.newPassword}
 						this.$api.user.updatePassword(params).then((res) => {
 							this.updatePwdLoading = false
-							if(res.code == 200) {
+							if(res.code == "00000") {
 								this.$message({ message: '操作成功', type: 'success' })
                 this.$refs['updatePwdDataForm'].resetFields()
                 this.logoutApi()

@@ -10,7 +10,7 @@
 export const baseUrlPrefix = 'http://localhost'
 // export const baseUrlPrefix = 'http://114.67.106.207'
 
-export const baseUrl = baseUrlPrefix + ':8081'
+export const baseUrl = baseUrlPrefix + ':8090'
 
 export const registryCenterUrl = baseUrlPrefix + ':8848/nacos'
 
@@ -18,10 +18,12 @@ export const registryCenterUrl = baseUrlPrefix + ':8848/nacos'
 // export const backupBaseUrl = 'http://139.196.87.48:8002'
 export const backupBaseUrl = 'http://localhost:8002'
 
+export const successCode = '00000'
 
 export default {
     baseUrlPrefix,
     baseUrl,
     registryCenterUrl,
-    backupBaseUrl
+    backupBaseUrl,
+    successCode
 }

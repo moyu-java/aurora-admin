@@ -28,7 +28,7 @@ export const logout = () => {
 // 登出
 export const logoutLog = (params) => {
     return axios({
-        url: '/upms/logoutLog',
+        url: '/log/logoutLog',
         method: 'get',
         params
     })
