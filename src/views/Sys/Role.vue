@@ -232,7 +232,7 @@ export default {
 		// 角色菜单授权提交
 		submitAuthForm() {
 			let roleId = this.selectRole.id
-			if('admin' == this.selectRole.name) {
+			if('super_admin' == this.selectRole.name) {
 				this.$message({message: '超级管理员拥有所有菜单权限，不允许修改！', type: 'error'})
 				return
 			}

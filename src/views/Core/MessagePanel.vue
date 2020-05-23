@@ -32,28 +32,28 @@ export default {
           key: "1",
           avatar:'@/assets/user.png',
           content:'你修改了用户密码',
-          sender:'诸葛亮',
+          sender:'小亮',
           time:'5分钟前'
         },
         {
           key: "2",
           avatar:'@/assets/user.png',
           content:'你修改了用户头像',
-          sender:'武则天',
+          sender:'小天',
           time:'2小时前'
         },
         {
           key: "3",
           avatar:'@/assets/user.png',
           content:'今日25名新成员加入',
-          sender:'王语嫣',
+          sender:'小明',
           time:'昨天'
         },
         {
           key: "4",
           avatar:'@/assets/user.png',
           content:'您发表了一篇新随笔',
-          sender:'上官婉儿',
+          sender:'小王',
           time:'前天'
         }]
     }

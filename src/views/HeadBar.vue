@@ -122,7 +122,7 @@ export default {
     if (username) {
       let params = {username:username}
       this.$api.user.findByName(params).then((res) => {
-				if(res.code == 200) {
+				if(res.code == "00000") {
           this.user = res.data
           this.user.avatar = require("@/assets/user.png")
           if(!this.user.nickName){

@@ -32,14 +32,14 @@
           <li class="fa fa-eraser"></li>
           清除缓存
         </div>    
-        <div class="other-operation-item" @click="openOnlinePage">
+        <!-- <div class="other-operation-item" @click="openOnlinePage">
           <li class="fa fa-user"></li>
           在线人数 {{onlineUser}}
-        </div>    
+        </div>  -->
         <div class="other-operation-item">
           <li class="fa fa-bell"></li>
           访问次数 {{accessTimes}}
-        </div>    
+        </div>
         <!-- <div class="other-operation-item" @click="showBackupDialog">
           <li class="fa fa-undo"></li>
           {{$t("common.backupRestore")}}
@@ -136,7 +136,7 @@ export default {
           }
 					this.$confirm('确认提交吗？', '提示', {}).then(() => {
 						this.updatePwdLoading = true
-						let params = {password:this.updatePwdDataForm.password, newPassword:this.updatePwdDataForm.newPassword}
+						let params = {username: this.user.username, password:this.updatePwdDataForm.password, newPassword:this.updatePwdDataForm.newPassword}
 						this.$api.user.updatePassword(params).then((res) => {
 							this.updatePwdLoading = false
 							if(res.code == "00000") {
