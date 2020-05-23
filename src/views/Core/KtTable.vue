@@ -136,7 +136,7 @@ export default {
         }
         this.loading = true
         let callback = res => {
-          if(res.code == 200) {
+          if(res.code == "00000") {
             this.$message({message: '删除成功', type: 'success'})
             this.findPage()
           } else {

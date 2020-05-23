@@ -104,16 +104,16 @@ http {
 docker image prune -f
 
 # 创建镜像，注意后面有一个点
-docker build -t saturn-admin:1.0.1 .
+docker build -t saturn-admin:1.0.2 .
 
 # 添加标记
-docker tag saturn-admin:1.0.1 jemgeek/saturn-admin:1.0.1
+docker tag saturn-admin:1.0.2 jemgeek/saturn-admin:1.0.2
 
 # 添加标记 latest
-docker tag saturn-admin:1.0.1 jemgeek/saturn-admin:latest
+docker tag saturn-admin:1.0.2 jemgeek/saturn-admin:latest
 
 # 上传 最新版本
-docker push jemgeek/saturn-admin:1.0.1
+docker push jemgeek/saturn-admin:1.0.2
 
 # 上传 更新 latest 版本
 docker push jemgeek/saturn-admin:latest

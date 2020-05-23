@@ -15,8 +15,7 @@
       <el-menu :default-active="activeIndex" class="el-menu-demo" 
           :background-color="themeColor" text-color="#fff" active-text-color="#ffd04b" mode="horizontal" @select="selectNavBar()">
         <el-menu-item index="1" @click="$router.push('/')">{{$t("common.home")}}</el-menu-item>
-        <el-menu-item index="2" @click="openWindow('https://github.com/JemGeek')">{{$t("common.doc")}}</el-menu-item>
-        <el-menu-item index="3" @click="openWindow('http://jemgeek.com/')">{{$t("common.blog")}}</el-menu-item>
+        <el-menu-item index="3" @click="openWindow(serverMonitorUrl)">{{$t("common.serverMonitor")}}</el-menu-item>
         <el-menu-item index="4" @click="openWindow(registryCenterUrl)">{{$t("common.registryCenter")}}</el-menu-item>
       </el-menu>
     </span>
@@ -117,6 +116,7 @@ export default {
   },
   mounted() {
     this.registryCenterUrl = this.global.registryCenterUrl
+    this.serverMonitorUrl = this.global.serverMonitorUrl
 
     var username = sessionStorage.getItem("username")
     if (username) {

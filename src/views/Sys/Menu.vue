@@ -3,11 +3,11 @@
 	<!--工具栏-->
 	<div class="toolbar" style="float:left;padding-top:10px;padding-left:15px;">
 		<el-form :inline="true" :model="filters" :size="size">
-			<el-form-item>
+			<!-- <el-form-item>
 				<el-input v-model="filters.name" placeholder="名称"></el-input>
-			</el-form-item>
+			</el-form-item> -->
 			<el-form-item>
-				<kt-button icon="fa fa-search" :label="$t('action.search')" perms="sys:menu:view" type="primary" @click="findTreeData(null)"/>
+				<kt-button icon="fa fa-refresh" :label="$t('action.refresh')" perms="sys:menu:view" type="primary" @click="findTreeData(null)"/>
 			</el-form-item>
 			<el-form-item>
 				<kt-button icon="fa fa-plus" :label="$t('action.add')" perms="sys:menu:add" type="primary" @click="handleAdd"/>

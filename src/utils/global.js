@@ -7,12 +7,14 @@
  // 后台管理系统服务器地址
 // export const baseUrl = 'http://139.196.87.48:8001'
 // export const baseUrl = 'http://114.67.106.207:8889'
-export const baseUrlPrefix = 'http://localhost'
-// export const baseUrlPrefix = 'http://114.67.106.207'
+// export const baseUrlPrefix = 'http://localhost'
+export const baseUrlPrefix = 'http://114.67.106.207'
 
 export const baseUrl = baseUrlPrefix + ':8090'
 
 export const registryCenterUrl = baseUrlPrefix + ':8848/nacos'
+
+export const serverMonitorUrl = baseUrlPrefix + ':8100'
 
 // 系统数据备份还原服务器地址
 // export const backupBaseUrl = 'http://139.196.87.48:8002'
@@ -24,6 +26,7 @@ export default {
     baseUrlPrefix,
     baseUrl,
     registryCenterUrl,
+    serverMonitorUrl,
     backupBaseUrl,
     successCode
 }
