@@ -1,4 +1,4 @@
-# saturn-admin
+# aurora-admin
 
 > Aurora 后台管理项目
 
@@ -104,19 +104,19 @@ http {
 docker image prune -f
 
 # 创建镜像，注意后面有一个点
-docker build -t saturn-admin:1.0.2 .
+docker build -t aurora-admin:1.0.0.
 
 # 添加标记
-docker tag saturn-admin:1.0.2 jemgeek/saturn-admin:1.0.2
+docker tag aurora-admin:1.0.0 jemgeek/aurora-admin:1.0.0
 
 # 添加标记 latest
-docker tag saturn-admin:1.0.2 jemgeek/saturn-admin:latest
+docker tag aurora-admin:1.0.0 jemgeek/aurora-admin:latest
 
 # 上传 最新版本
-docker push jemgeek/saturn-admin:1.0.2
+docker push jemgeek/aurora-admin:1.0.0
 
 # 上传 更新 latest 版本
-docker push jemgeek/saturn-admin:latest
+docker push jemgeek/aurora-admin:latest
 
 ```
 
@@ -124,18 +124,18 @@ docker push jemgeek/saturn-admin:latest
 
 ``` bash
 # 拉取镜像, 不加标签自动拉取latest版本
-docker pull jemgeek/saturn-admin:latest
+docker pull jemgeek/aurora-admin:latest
 
 # 运行镜像
-docker run --name saturn-admin -p 8080:80 -d jemgeek/saturn-admin
+docker run --name aurora-admin -p 8080:80 -d jemgeek/aurora-admin
 
 # 当镜像更新之后，需要先删除之前创建的容器，然后拉取新的镜像，然后重新创建容器
 # 停止容器
-docker stop saturn-admin
+docker stop aurora-admin
 # 删除容器
-docker rm saturn-admin
+docker rm aurora-admin
 # 重新拉取镜像
-docker pull jemgeek/saturn-admin
+docker pull jemgeek/aurora-admin
 # 重新创建容器
-docker run --name saturn-admin -p 8080:80 -d jemgeek/saturn-admin
+docker run --name aurora-admin -p 8080:80 -d jemgeek/aurora-admin
 ```
