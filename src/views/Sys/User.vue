@@ -198,7 +198,7 @@ export default {
 			this.dataForm = Object.assign({}, params.row)
 			let userRoles = []
 			for(let i=0,len=params.row.userRoles.length; i<len; i++) {
-				userRoles.push(params.row.userRoles[i].roleId)
+				userRoles.push(params.row.userRoles[i].remark)
 			}
 			this.dataForm.userRoles = userRoles
 		},

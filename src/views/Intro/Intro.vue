@@ -5,7 +5,7 @@
         <h2>项目介绍</h2>
         <ul>
           <li>基于 Spring Boot、Spring Cloud、Vue、Element 的后台管理系统</li>
-          <li>旨在开发一套简洁易用的分布式系统，有效降低同类项目的开发难度和成本</li>
+          <li>旨在开发一套简洁易用的微服务架构的系统，有效降低同类项目的开发难度和成本</li>
           <li>同时线上实践各种技术并不断提升系统稳定性、可用性等</li>
           <!-- <li>本人博客：<a ref="http://JemGeek.com">http://JemGeek.com</a></li> -->
         </ul>
@@ -19,10 +19,8 @@
           <li>✔ 机构管理：新建机构，修改机构，删除机构，查询机构</li>
           <li>✔ 角色管理：新建角色，修改角色，删除角色，查询角色</li>
           <li>✔ 菜单管理：新建菜单，修改菜单，删除菜单，查询菜单</li>
+          <li>✔ 字典管理：新建字典，修改字典，删除字典，查询字典</li>
           <li>✔ 系统日志：记录用户操作日志，查看系统执行日志记录</li>
-          <li>✔ 数据监控：定制 SQL 信息，提供简洁有效的SQL监控</li>
-          <li>✔ 聚合文档：定制在线文档，提供简洁美观的API文档</li>
-          <li>✔ 备份还原：系统备份还原，一键恢复系统初始化数据</li>
           <li>✔ 主题切换：支持主题切换，自定主题颜色，一键换肤</li>
           <!-- <li>✔ 服务治理：集成Spring Cloud，实现全方位服务治理</li> -->
           <li>✔ 服务监控：集成Spring Boot Admin，实现微服务监控</li>
@@ -39,9 +37,9 @@
         </ul>
         <h2>技术选型</h2>
         <ul>
-          <li>核心框架：Spring Boot 2.x.  安全框架：Spring Security 5.x.</li>
+          <li>核心框架：Spring Boot 2.x.  安全框架：Spring Cloud OAuth2</li>
           <li>数据库连接池：hikari 3.4.x. 持久层框架：MyBatis 3.x.</li>
-          <li>RPC框架：Dubbo 2.7.x       注册中心：Nacos 1.1.x </li>
+          <li>网关框架：Gateway 2.x       注册中心：Nacos 1.1.x </li>
           <li>前端框架：Vue.js 2.x.       页面组件：Element 2.x.</li>
           <li>状态管理：Vuex.js 2.x.      后台交互：axios 0.18.x.</li>
           <li>...</li>
