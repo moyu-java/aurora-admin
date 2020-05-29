@@ -25,10 +25,10 @@ export const logout = () => {
     })
 }
 
-// 登出
-export const logoutLog = (params) => {
+// 登录日志
+export const loginLog = (params) => {
     return axios({
-        url: '/log/logoutLog',
+        url: '/oauth/log',
         method: 'get',
         params
     })

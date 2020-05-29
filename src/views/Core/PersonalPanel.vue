@@ -176,9 +176,6 @@ export default {
     logoutApi() {
       sessionStorage.removeItem("username")
         this.$router.push("/login")
-        this.$api.login.logoutLog({username:this.user.username}).then((res) => {
-          }).catch(function(res) {
-        })
         this.$api.login.logout().then((res) => {
           }).catch(function(res) {
         })

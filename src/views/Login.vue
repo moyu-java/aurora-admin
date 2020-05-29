@@ -103,6 +103,7 @@ export default {
           sessionStorage.setItem('username', userInfo.username) // 保存用户到本地会话
           this.$store.commit('menuRouteLoaded', false) // 要求重新加载导航菜单
           this.$router.push('/')  // 登录成功，跳转到主页
+          this.$api.login.loginLog().then()
         }
         this.loading = false
       }).catch((res) => {
