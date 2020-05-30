@@ -188,18 +188,17 @@ export default {
     },    
     // 获取在线用户数
 		countOnlineUser() {
-      let pageRequest = { pageNum: 1, pageSize: 10000000 }
-			pageRequest.params = [{name:'status', value:'online'}]
-			this.$api.loginlog.findPage(pageRequest).then((res) => {
-				this.onlineUser = res.data.content.length
-			})
+      // let pageRequest = { pageNum: 1, pageSize: 10000000 }
+			// pageRequest.params = [{name:'status', value:'online'}]
+			// this.$api.loginlog.findPage(pageRequest).then((res) => {
+			// 	this.onlineUser = res.data.content.length
+			// })
 		},
     // 获取访问次数
 		countAccessTimes() {
-      let pageRequest = { pageNum: 1, pageSize: 10000000 }
-			pageRequest.params = [{name:'status', value:'login'}]
-			this.$api.loginlog.findPage(pageRequest).then((res) => {
-				this.accessTimes = res.data.content.length + 1
+
+			this.$api.loginlog.getLoginTotal({'status':'login'}).then((res) => {
+				this.accessTimes = res.data
 			})
 		},
     openOnlinePage() {

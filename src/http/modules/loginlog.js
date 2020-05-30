@@ -20,3 +20,11 @@ export const findPage = (data) => {
         data
     })
 }
+// 根据状态查询总数
+export const getLoginTotal = (params) => {
+    return axios({
+        url: '/log/login/total',
+        method: 'get',
+        params
+    })
+}
