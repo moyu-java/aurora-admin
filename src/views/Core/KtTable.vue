@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--表格栏-->
-    <el-table :data="data.content" :highlight-current-row="highlightCurrentRow" @selection-change="selectionChange" 
+    <el-table :data="data.list" :highlight-current-row="highlightCurrentRow" @selection-change="selectionChange" 
           @current-change="handleCurrentChange" v-loading="loading" :element-loading-text="$t('action.loading')" :border="border" :stripe="stripe"
           :show-overflow-tooltip="showOverflowTooltip" :max-height="maxHeight" :size="size" :align="align" style="width:100%;" >
       <el-table-column type="selection" width="45" v-if="showBatchDelete & showOperation"></el-table-column>
@@ -22,7 +22,7 @@
       <kt-button :label="$t('action.batchDelete')" :perms="permsDelete" :size="size" type="danger" @click="handleBatchDelete()" 
         :disabled="this.selections.length===0" style="float:left;" v-if="showBatchDelete & showOperation"/>
       <el-pagination layout="total, prev, pager, next, jumper" @current-change="refreshPageRequest" 
-        :current-page="pageRequest.pageNum" :page-size="pageRequest.pageSize" :total="data.totalSize" style="float:right;">
+        :current-page="pageRequest.page" :page-size="pageRequest.limit" :total="data.totalSize" style="float:right;">
       </el-pagination>
     </div>
   </div>
@@ -81,8 +81,8 @@ export default {
     return {
       // 分页信息
 			pageRequest: {
-				pageNum: 1,
-        pageSize: 10
+				page: 1,
+        limit: 10
       },
       loading: false,  // 加载标识
       selections: []  // 列表选中列
@@ -107,8 +107,8 @@ export default {
       this.$emit('handleCurrentChange', {val:val})
     },
     // 换页刷新
-		refreshPageRequest: function (pageNum) {
-      this.pageRequest.pageNum = pageNum
+		refreshPageRequest: function (page) {
+      this.pageRequest.page = page
       this.findPage()
     },
     // 编辑

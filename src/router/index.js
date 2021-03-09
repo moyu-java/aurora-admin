@@ -44,21 +44,21 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // 登录界面登录成功之后，会把用户信息保存在会话
   // 存在时间为会话生命周期，页面关闭即失效。
-  let username = sessionStorage.getItem('username')
+  let account = sessionStorage.getItem('account')
   if (to.path === '/login') {
     // 如果是访问登录界面，如果用户会话信息存在，代表已登录过，跳转到主页
-    if(username) {
+    if(account) {
       next({ path: '/' })
     } else {
       next()
     }
   } else {
-    if (!username) {
+    if (!account) {
       // 如果访问非登录界面，且户会话信息不存在，代表未登录，则跳转到登录界面
       next({ path: '/login' })
     } else {
       // 加载动态菜单和路由
-      addDynamicMenuAndRoutes(username, to, from)
+      addDynamicMenuAndRoutes(account, to, from)
       next()
     }
   }
@@ -67,14 +67,14 @@ router.beforeEach((to, from, next) => {
 /**
 * 加载动态菜单和路由
 */
-function addDynamicMenuAndRoutes(username, to, from) {
+function addDynamicMenuAndRoutes(account, to, from) {
   // 处理IFrame嵌套页面
   handleIFrameUrl(to.path)
   if(store.state.app.menuRouteLoaded) {
     console.log('动态菜单和路由已经存在.')
     return
   }
-  api.menu.findNavTree({'username':username})
+  api.user.getMenusTree()
   .then(res => {
     // 添加动态路由
     let dynamicRoutes = addDynamicRoutes(res.data)
@@ -86,7 +86,7 @@ function addDynamicMenuAndRoutes(username, to, from) {
     // 保存菜单树
     store.commit('setNavTree', res.data)
   }).then(res => {
-    api.user.findPermissions({'username':username}).then(res => {
+    api.user.getPermissionCodes().then(res => {
       // 保存用户权限标识集合
       store.commit('setPerms', res.data)
     })

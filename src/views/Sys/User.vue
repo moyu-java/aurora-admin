@@ -4,13 +4,13 @@
 	<div class="toolbar" style="float:left;padding-top:10px;padding-left:15px;">
 		<el-form :inline="true" :model="filters" :size="size">
 			<el-form-item>
-				<el-input v-model="filters.name" placeholder="用户名"></el-input>
+				<el-input v-model="filters.nickName" placeholder="用户昵称"></el-input>
 			</el-form-item>
 			<el-form-item>
-				<kt-button icon="fa fa-search" :label="$t('action.search')" perms="sys:role:view" type="primary" @click="findPage(null)"/>
+				<kt-button icon="fa fa-search" :label="$t('action.search')" perms="uims:role:view" type="primary" @click="findPage(null)"/>
 			</el-form-item>
 			<el-form-item>
-				<kt-button icon="fa fa-plus" :label="$t('action.add')" perms="sys:user:add" type="primary" @click="handleAdd" />
+				<kt-button icon="fa fa-plus" :label="$t('action.add')" perms="uims:user:add" type="primary" @click="handleAdd" />
 			</el-form-item>
 		</el-form>
 	</div>
@@ -36,7 +36,7 @@
 		</table-column-filter-dialog>
 	</div>
 	<!--表格内容栏-->
-	<kt-table permsEdit="sys:user:edit" permsDelete="sys:user:delete"
+	<kt-table permsEdit="uims:user:edit" permsDelete="uims:user:delete"
 		:data="pageResult" :columns="filterColumns"
 		@findPage="findPage" @handleEdit="handleEdit" @handleDelete="handleDelete">
 	</kt-table>
@@ -56,7 +56,7 @@
 			<el-form-item label="密码" prop="password" v-if="operation">
 				<el-input v-model="dataForm.password" type="password" auto-complete="off" ></el-input>
 			</el-form-item>
-			<el-form-item label="机构" prop="deptName">
+			<!-- <el-form-item label="机构" prop="deptName">
 				<popup-tree-input 
 					:data="deptData" 
 					:props="deptTreeProps" 
@@ -64,7 +64,7 @@
 					:nodeKey="''+dataForm.deptId" 
 					:currentChangeHandle="deptTreeCurrentChangeHandle">
 				</popup-tree-input>
-			</el-form-item>
+			</el-form-item> -->
 			<el-form-item label="邮箱" prop="email">
 				<el-input v-model="dataForm.email" auto-complete="off"></el-input>
 			</el-form-item>
@@ -109,7 +109,7 @@ export default {
 			},
 			columns: [],
 			filterColumns: [],
-			pageRequest: { pageNum: 1, pageSize: 8 },
+			pageRequest: { page: 1, limit: 10, nickName: '' },
 			pageResult: {},
 
 			operation: false, // true:新增, false:编辑
@@ -146,15 +146,16 @@ export default {
 			if(data !== null) {
 				this.pageRequest = data.pageRequest
 			}
-			this.pageRequest.params = [{name:'username', value:this.filters.name}]
-			this.$api.user.findPage(this.pageRequest).then((res) => {
+			this.pageRequest.nickName = this.filters.nickName
+			let params = this.$qs.stringify(this.pageRequest)
+			this.$api.user.getUsersForPage(params).then((res) => {
 				this.pageResult = res.data
 				this.findUserRoles()
 			}).then(data!=null?data.callback:'')
 		},
 		// 导出Excel用户信息
 		exportUserExcelFile: function () {
-			this.pageRequest.pageSize = 100000
+			this.pageRequest.limit = 100000
 			this.pageRequest.params = [{name:'username', value:this.filters.name}]
 			this.$api.user.exportUserExcelFile(this.pageRequest).then((res) => {
 				this.$alert(res.data, '导出成功', {
@@ -166,7 +167,7 @@ export default {
 		},
 		// 加载用户角色信息
 		findUserRoles: function () {
-			this.$api.role.findAll().then((res) => {
+			this.$api.role.getAllRoles().then((res) => {
 				// 加载角色集合
 				this.roles = res.data	
 			})
@@ -233,12 +234,7 @@ export default {
 				}
 			})
 		},
-		// 获取部门列表
-		findDeptTree: function () {
-			this.$api.dept.findDeptTree().then((res) => {
-				this.deptData = res.data
-			})
-		},
+
 		// 菜单树选中
       	deptTreeCurrentChangeHandle (data, node) {
         	this.dataForm.deptId = data.id
@@ -261,13 +257,13 @@ export default {
       	initColumns: function () {
 			this.columns = [
 				{prop:"id", type: "index", label:"ID", minWidth:50},
-				{prop:"username", label:"用户名", minWidth:120},
 				{prop:"nickName", label:"昵称", minWidth:120},
-				{prop:"deptName", label:"机构", minWidth:120},
-				{prop:"roleNames", label:"角色", minWidth:100},
+				// {prop:"roleNames", label:"角色", minWidth:100},
 				{prop:"email", label:"邮箱", minWidth:120},
 				{prop:"mobile", label:"手机", minWidth:100},
-				{prop:"status", label:"状态", minWidth:70},
+				{prop:"roleNames", label:"角色", minWidth:100},
+				{prop:"sexLabel", label:"性别", minWidth:70},
+				{prop:"lockedLabel", label:"状态", minWidth:70},
 				// {prop:"createBy", label:"创建人", minWidth:120},
 				// {prop:"createTime", label:"创建时间", minWidth:120, formatter:this.dateFormat}
 				// {prop:"lastUpdateBy", label:"更新人", minWidth:100},
@@ -277,7 +273,7 @@ export default {
       	}
 	},
 	mounted() {
-		this.findDeptTree()
+		// this.findDeptTree()
 		this.initColumns()
 	}
 }

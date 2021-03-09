@@ -55,7 +55,7 @@ export default {
 			if(data !== null) {
 				this.pageRequest = data.pageRequest
 			}
-			this.pageRequest.params = [{name:'username', value:this.filters.username}]
+			this.pageRequest.params = [{name:'account', value:this.filters.account}]
 			this.$api.loginlog.findPage(this.pageRequest).then((res) => {
 				this.pageResult = res.data
 			}).then(data!=null?data.callback:'')

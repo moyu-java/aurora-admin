@@ -136,10 +136,14 @@ export default {
           }
 					this.$confirm('确认提交吗？', '提示', {}).then(() => {
 						this.updatePwdLoading = true
-						let params = {username: this.user.username, password:this.updatePwdDataForm.password, newPassword:this.updatePwdDataForm.newPassword}
+						let formData = {
+              oldPassword:this.updatePwdDataForm.password, 
+              newPassword:this.updatePwdDataForm.newPassword
+            }
+            let params = this.$qs.stringify(formData)
 						this.$api.user.updatePassword(params).then((res) => {
 							this.updatePwdLoading = false
-							if(res.code == "00000") {
+							if(res.code == 0) {
 								this.$message({ message: '操作成功', type: 'success' })
                 this.$refs['updatePwdDataForm'].resetFields()
                 this.logoutApi()
@@ -174,7 +178,7 @@ export default {
       .catch(() => {})
     },
     logoutApi() {
-      sessionStorage.removeItem("username")
+      sessionStorage.removeItem("account")
         this.$router.push("/login")
         this.$api.login.logout().then((res) => {
           }).catch(function(res) {
@@ -196,10 +200,9 @@ export default {
 		},
     // 获取访问次数
 		countAccessTimes() {
-
-			this.$api.loginlog.getLoginTotal({'status':'login'}).then((res) => {
-				this.accessTimes = res.data
-			})
+			// this.$api.loginlog.getLoginTotal({'status':'login'}).then((res) => {
+			// 	this.accessTimes = res.data
+			// })
 		},
     openOnlinePage() {
       // 通过菜单URL跳转至指定路由

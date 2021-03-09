@@ -4,49 +4,60 @@ import axios from '../axios'
  * 角色管理模块
  */
 
-// 保存
-export const save = (data) => {
+// 创建角色
+export const createRole = (data) => {
     return axios({
-        url: '/upms/role/save',
+        url: `/roles`,
         method: 'post',
         data
     })
 }
-// 删除
-export const batchDelete = (data) => {
+
+// 更新角色
+export const updateRole = (data) => {
     return axios({
-        url: '/upms/role/delete',
-        method: 'post',
+        url: `/roles`,
+        method: 'put',
         data
+    })
+}
+
+// 删除
+export const deleteRole = (id) => {
+    return axios({
+        url: `/roles/${id}`,
+        method: 'delete'
     })
 }
 // 分页查询
-export const findPage = (data) => {
+export const getRolesForPage = (data) => {
     return axios({
-        url: '/upms/role/list',
-        method: 'post',
+        url: `/roles`,
+        method: 'get',
         data
     })
 }
+
 // 查询全部
-export const findAll = () => {
+export const getAllRoles = () => {
     return axios({
-        url: '/upms/role/listAll',
+        url: `/roles/all`,
         method: 'get'
     })
 }
+
 // 查询角色菜单集合
-export const findRoleMenus = (params) => {
+export const getRoleMenus = (id) => {
     return axios({
-        url: '/upms/role/listRoleMenus',
-        method: 'get',
-        params
+        url: `/roles/${id}/permissions`,
+        method: 'get'
     })
 }
+
 // 保存角色菜单集合
-export const saveRoleMenus = (data) => {
+export const saveRoleMenus = (id, data) => {
     return axios({
-        url: '/upms/role/saveRoleMenus',
+        url: `/roles/${id}/permissions`,
         method: 'post',
         data
     })

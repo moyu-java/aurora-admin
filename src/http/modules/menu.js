@@ -7,31 +7,41 @@ import axios from '../axios'
  // 保存
 export const save = (data) => {
     return axios({
-        url: '/upms/menu/save',
+        url: '/permissions/save',
         method: 'post',
         data
     })
 }
-// 删除
-export const batchDelete = (data) => {
+
+// 删除权限
+export const deletePermission = (id) => {
     return axios({
-        url: '/upms/menu/delete',
-        method: 'post',
-        data
+        url: `/permissions/${id}`,
+        method: 'delete'
     })
 }
-// 查找导航菜单树
-export const findNavTree = (params) => {
+
+// 获取权限详情
+export const getPermission = (id) => {
     return axios({
-        url: '/upms/menu/listNavTree',
+        url: `/permissions/${id}`,
+        method: 'get'
+    })
+}
+
+// 获取所有的权限列表
+export const getAllPermissions = (params) => {
+    return axios({
+        url: '/permissions',
         method: 'get',
         params
     })
 }
-// 查找导航菜单树
-export const findMenuTree = (params) => {
+
+// 获取所有的权限树
+export const getPermissionsTree = (params) => {
     return axios({
-        url: '/upms/menu/listMenuTree',
+        url: '/permissions/tree',
         method: 'get',
         params
     })

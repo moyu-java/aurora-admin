@@ -17,7 +17,7 @@ export default function $axios(options) {
         let token = Cookies.get('token')
         // 发送请求时携带token
         console.log("config = " + config.url)
-        if (token && !config.url.startsWith("/oauth/token")) {
+        if (token && !config.url.startsWith("/oauth/login")) {
           config.headers.Authorization = "Bearer " + token
         } else {
           // 重定向到登录页面

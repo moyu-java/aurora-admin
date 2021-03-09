@@ -47,8 +47,8 @@ export default {
     return {
       loading: false,
       loginForm: {
-        account: 'guest',
-        password: 'guest',
+        account: 'dkylin@qq.com',
+        password: 'James2020',
         src: ''
       },
       fieldRules: {
@@ -66,12 +66,13 @@ export default {
     login(loginForm) {
       this.loading = true
 
-      let userInfo = { username:this.loginForm.account, 
+      let userInfo = { 
+        account:this.loginForm.account, 
         password:this.loginForm.password,
         grant_type: "password"
       }
       
-      if(userInfo.username == null || userInfo.username.length == 0){
+      if(userInfo.account == null || userInfo.account.length == 0){
           this.$message({ 
             message: "用户名不能为空", 
             type: 'error'
@@ -89,21 +90,22 @@ export default {
           return
       }
 
-      var requestParam = 'grant_type=password&username=' + userInfo.username + '&password=' + userInfo.password
+      var requestParam = 'grant_type=password&account=' + userInfo.account + '&password=' + userInfo.password
 
       this.$api.login.login(requestParam).then((res) => {  // 调用登录接口
         console.log(res)
-        if(!res.access_token) {
+        if(!res.data.access_token) {
           this.$message({ 
             message: res.message, 
             type: 'error'
           })
         } else {
-          Cookies.set('token', res.access_token) // 放置token到Cookie
-          sessionStorage.setItem('username', userInfo.username) // 保存用户到本地会话
+          Cookies.set('token', res.data.access_token) // 放置token到Cookie
+          sessionStorage.setItem('account', userInfo.account) // 保存用户到本地会话
           this.$store.commit('menuRouteLoaded', false) // 要求重新加载导航菜单
           this.$router.push('/')  // 登录成功，跳转到主页
-          this.$api.login.loginLog().then()
+          // 记录登录日志
+          // this.$api.login.loginLog().then()
         }
         this.loading = false
       }).catch((res) => {

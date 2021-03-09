@@ -6,10 +6,10 @@ import axios from '../axios'
 // 登录
 export const login = data => {
     return axios({
-        url: '/oauth/token',
+        url: '/oauth/login',
         method: 'post',
         headers: {
-            'Authorization': `Basic Y2xpZW50OnNlY3JldA==`,
+            'Authorization': `Basic c2F0dXJuOkRzb1c2cDRIMmNnc1ljRUJobW1NcXRCNQ==`,
             'Content-Type': 'application/x-www-form-urlencoded',
             'Accept': '*/*'
         },

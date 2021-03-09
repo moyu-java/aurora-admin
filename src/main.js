@@ -8,6 +8,7 @@ import i18n from './i18n'
 import store from './store'
 import global from '@/utils/global'
 import ElementUI from 'element-ui'
+import qs from 'qs'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome/css/font-awesome.min.css'
 
@@ -15,6 +16,7 @@ Vue.use(ElementUI)  // 注册使用Element
 Vue.use(api)  // 注册使用API模块
 
 Vue.prototype.global = global // 挂载全局配置模块
+Vue.prototype.$qs = qs
 
 /* eslint-disable no-new */
 new Vue({

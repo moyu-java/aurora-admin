@@ -118,15 +118,14 @@ export default {
     this.registryCenterUrl = this.global.registryCenterUrl
     this.serverMonitorUrl = this.global.serverMonitorUrl
 
-    var username = sessionStorage.getItem("username")
-    if (username) {
-      let params = {username:username}
-      this.$api.user.findByName(params).then((res) => {
-				if(res.code == "00000") {
+    var account = sessionStorage.getItem("account")
+    if (account) {
+      this.$api.user.getUserByAccount(account).then((res) => {
+				if(res.code == 0) {
           this.user = res.data
           this.user.avatar = require("@/assets/user.png")
           if(!this.user.nickName){
-            this.user.nickName = this.user.username
+            this.user.nickName = this.user.account
           }
         }
       })
